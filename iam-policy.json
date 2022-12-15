@@ -1,0 +1,42 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetAuthorizationToken",
+                "codecommit:GitPull",
+                "ssm:GetParameters",
+                "s3:GetBucketAcl",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "codecommit:ListRepositories",
+                "s3:PutObject",
+                "s3:GetObject",
+                "logs:CreateLogStream",
+                "ecr:BatchGetImage",
+                "s3:GetBucketLocation",
+                "ecr:BatchCheckLayerAvailability",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+//  Trusted entities
+
+// {
+//     "Version": "2012-10-17",
+//     "Statement": [
+//         {
+//             "Effect": "Allow",
+//             "Principal": {
+//                 "Service": "codebuild.amazonaws.com"
+//             },
+//             "Action": "sts:AssumeRole"
+//         }
+//     ]
+// }

@@ -1,0 +1,16 @@
+version: 0.2
+# parameter-store: # if you want to store repo names in parameter store
+#   repositories: "REPOSITORIES"
+phases:
+  install:
+    commands:
+      - pip install git-remote-codecommit
+      - git config --global credential.helper '!aws codecommit credential-helper $@'
+      - git config --global credential.UseHttpPath true
+  build:
+    commands: 
+      - env
+      - chmod 755 git-script.sh
+      - sed -i 's/\r$//' git-script.sh #get rid of Windows new line error on Linux
+      - aws codecommit list-repositories --output text --query 'repositories[*].[repositoryName]' > repos.txt
+      - ./git-script.sh $(cat repos.txt | tr '\n' ' ')
